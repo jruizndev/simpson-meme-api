@@ -1,11 +1,23 @@
-import connection_db from './database/connectionDb.js'
-import memeModel from './models/memeModels.js'
+import express from 'express'
+import { initializeDatabase } from './database/connectionDb.js' //
+import memeRouter from './routers/memeRouters.js'
 
-try {
-    await connection_db.authenticate()
-    console.log('conexión exitosa 🚀')
-    await memeModel.sync({ force: true })
-    console.log('La tabla fue creada con éxito')
-} catch (error) {
-    console.error('conexión fallida 🚫', error)
+const app = express()
+const port = process.env.PORT || 3001
+
+app.use(express.json())
+
+app.use('/api/v1', memeRouter)
+
+const startServer = async () => {
+    try {
+        await initializeDatabase()
+        app.listen(port, () => {
+            console.log(`Servidor corriendo en el puerto ${port} 🚀`)
+        })
+    } catch (error) {
+        console.error('No se pudo iniciar el servidor 🚫:', error)
+    }
 }
+
+startServer()
