@@ -14,4 +14,14 @@ const connection_db = new Sequelize(
   }
 );
 
+export const initializeDatabase = async () => {
+  try {
+    await connection_db.authenticate();
+    console.log("Conexión a la base de datos establecida correctamente.");
+  } catch (error) {
+    console.error("No se pudo conectar a la base de datos:", error);
+    throw error;
+  }
+};
+
 export default connection_db;

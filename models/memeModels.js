@@ -4,11 +4,10 @@ import { DataTypes } from "sequelize";
 const memeModel = connection_db.define(
   "Characters",
   {
-    id: {
+    meme_id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true, // autoincremental
-      primaryKey: true, // clave primaria
-      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -19,6 +18,7 @@ const memeModel = connection_db.define(
       allowNull: false,
     },
   },
+
   {
     timestamps: false,
   }
