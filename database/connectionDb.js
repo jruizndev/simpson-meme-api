@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize'
+/*import { Sequelize } from 'sequelize'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -14,4 +14,4 @@ const connection_db = new Sequelize(
     }
 )
 
-export default connection_db
+export default connection_db*/
