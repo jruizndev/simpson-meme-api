@@ -15,7 +15,7 @@ router.get('/memes', async (req, res) => {
 
 router.get('/memes/:meme_id', async (req, res) => {
     const id = req.params.meme_id
-    const meme = await memes.findOne({
+    const memes = await memes.findOne({
         where: {
             meme_id: id,
         }
@@ -23,7 +23,7 @@ router.get('/memes/:meme_id', async (req, res) => {
     res.status(200).json({
         ok: true,
         status: 200,
-        body: meme,
+        body: memes,
     });
 });
 
@@ -62,8 +62,19 @@ router.put('/memes/:meme_id', async (req, res) => {
 
 });
 
-router.delete('/memes', (req, res) => {
-    res.send('soy tu router')
+router.delete('/memes/:meme_id', async(req, res) => {
+    const id = req.params.meme_id
+    const deleteMeme = await Meme.destroy({
+        where: {
+            meme_id: id,
+        },
+    });
+
+    res.status(204).json({
+        ok: true,
+        status: 204,
+        body: deleteMeme,
+    })
 });
 
 module.exports = router;
