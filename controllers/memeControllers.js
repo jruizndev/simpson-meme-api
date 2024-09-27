@@ -119,6 +119,7 @@ export const updateMeme = async (req, res) => {
             })
         }
         const updatedMeme = await memeModel.findOne({ where: { meme_id: id } })
+
         res.status(200).json({
             ok: true,
             status: 200,
