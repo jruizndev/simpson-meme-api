@@ -118,11 +118,12 @@ export const updateMeme = async (req, res) => {
                 message: 'Meme not found or no changes made.',
             })
         }
-
+        const updatedMeme = await memeModel.findOne({ where: { meme_id: id } })
         res.status(200).json({
             ok: true,
             status: 200,
             message: 'Meme updated successfully',
+            meme: updatedMeme,
         })
     } catch (error) {
         console.error(error)
@@ -153,6 +154,7 @@ export const deleteMeme = async (req, res) => {
             ok: true,
             status: 200,
             message: 'Meme deleted successfully',
+            deletedMeme: meme,
         })
     } catch (error) {
         console.error(error)
