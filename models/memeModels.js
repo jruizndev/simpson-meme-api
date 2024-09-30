@@ -4,7 +4,7 @@ import { DataTypes } from "sequelize";
 const memeModel = connection_db.define(
   "Characters",
   {
-    meme_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
