@@ -1,5 +1,6 @@
 // config.js
-
+import dotenv from 'dotenv';
+dotenv.config();
 const config = {
   db: {
     // Utilizamos las variables de entorno para configurar la base de datos
