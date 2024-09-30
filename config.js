@@ -4,7 +4,7 @@ const config = {
   db: {
     name: "meme_app", // Nombre de la base de datos
     user: "root", // Usuario de la base de datos
-    password: "123456", // Contraseña de MySQL
+    password: "", // Contraseña de MySQL
     host: "localhost", // Host donde está corriendo la base de datos
     dialect: "mysql", // Dialecto (mysql en este caso)
   },
