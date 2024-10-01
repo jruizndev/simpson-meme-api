@@ -1,27 +1,27 @@
-import connection_db from "../database/connectionDb.js";
-import { DataTypes } from "sequelize";
+import connection_db from '../database/connectionDb.js'
+import { DataTypes } from 'sequelize'
 
 const memeModel = connection_db.define(
-  "Characters",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+    'Characters',
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    urlImage: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
 
-  {
-    timestamps: false,
-  }
-);
+    {
+        timestamps: false,
+    }
+)
 
-export default memeModel;
+export default memeModel
