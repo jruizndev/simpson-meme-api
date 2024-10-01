@@ -22,9 +22,9 @@ export const getAllMemes = async (req, res) => {
 
 // Obtener un meme por ID
 export const getMemeById = async (req, res) => {
-    const id = req.params.meme_id
+    const id = req.params.id
     try {
-        const meme = await memeModel.findOne({ where: { meme_id: id } })
+        const meme = await memeModel.findOne({ where: { id } })
         if (!meme) {
             return res.status(404).json({
                 ok: false,
@@ -53,7 +53,7 @@ export const createMeme = async (req, res) => {
     const memeData = req.body
 
     // Validación de datos
-    if (!memeData.name || !memeData.urlImage) {
+    if (!memeData.name || !memeData.image) {
         return res.status(400).json({
             ok: false,
             status: 400,
@@ -64,7 +64,7 @@ export const createMeme = async (req, res) => {
     try {
         const createMeme = await memeModel.create({
             name: memeData.name,
-            urlImage: memeData.urlImage,
+            image: memeData.image,
         })
 
         res.status(201).json({
@@ -86,11 +86,11 @@ export const createMeme = async (req, res) => {
 
 // Actualizar un meme
 export const updateMeme = async (req, res) => {
-    const id = req.params.meme_id
+    const id = req.params.id
     const memeData = req.body
 
     // Validación de datos
-    if (!memeData.name || !memeData.urlImage) {
+    if (!memeData.name || !memeData.image) {
         return res.status(400).json({
             ok: false,
             status: 400,
@@ -102,11 +102,11 @@ export const updateMeme = async (req, res) => {
         const updateMeme = await memeModel.update(
             {
                 name: memeData.name,
-                urlImage: memeData.urlImage,
+                image: memeData.image,
             },
             {
                 where: {
-                    meme_id: id,
+                    id,
                 },
             }
         )
@@ -118,7 +118,7 @@ export const updateMeme = async (req, res) => {
                 message: 'Meme not found or no changes made.',
             })
         }
-        const updatedMeme = await memeModel.findOne({ where: { meme_id: id } })
+        const updatedMeme = await memeModel.findOne({ where: { id } })
 
         res.status(200).json({
             ok: true,
@@ -137,11 +137,11 @@ export const updateMeme = async (req, res) => {
     }
 }
 
-// Eliminar un meme por ID
+//Eliminar meme
 export const deleteMeme = async (req, res) => {
-    const id = req.params.meme_id
+    const id = req.params.id
     try {
-        const meme = await memeModel.findOne({ where: { meme_id: id } })
+        const meme = await memeModel.findOne({ where: { id } })
         if (!meme) {
             return res.status(404).json({
                 ok: false,
@@ -150,7 +150,7 @@ export const deleteMeme = async (req, res) => {
             })
         }
 
-        await memeModel.destroy({ where: { meme_id: id } })
+        await memeModel.destroy({ where: { id } })
         res.status(200).json({
             ok: true,
             status: 200,
