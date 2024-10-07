@@ -19,9 +19,9 @@ const memeModel = connection_db.define(
     },
   },
 
-  {
-    timestamps: false,
-  }
-);
+    {
+        timestamps: false,
+    }
+)
 
-export default memeModel;
+export default memeModel
