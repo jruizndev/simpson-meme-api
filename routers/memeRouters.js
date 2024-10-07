@@ -9,34 +9,30 @@ import {
 import {
   validateMemeCreation,
   validateMemeUpdate,
-} from "../validators/memeValidator.js"; // Importar validaciones
+} from "../validators/memeValidator.js";
 import { validationResult } from "express-validator";
 
 const router = Router();
 
-// Middleware para manejar errores de validación
-const handleValidationErrors = (req, res, next) => {
+router.get("/memes", getAllMemes);
+router.get("/memes/:id", getMemeById);
+
+// Crear un meme con validación
+router.post("/memes", validateMemeCreation, (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  next();
-};
+  createMeme(req, res);
+});
 
-// Rutas
-router.get("/memes", getAllMemes);
-router.get("/memes/:id", getMemeById);
-
-// Aplicar validación antes de la creación de un nuevo meme
-router.post("/memes", validateMemeCreation, handleValidationErrors, createMeme);
-
-// Aplicar validación antes de actualizar un meme existente
-router.put(
-  "/memes/:id",
-  validateMemeUpdate,
-  handleValidationErrors,
-  updateMeme
-);
+router.put("/memes/:id", validateMemeUpdate, (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  updateMeme(req, res);
+});
 
 router.delete("/memes/:id", deleteMeme);
 
