@@ -1,5 +1,6 @@
 import request from 'supertest'
 import { app } from '../App'
+import memeModel from '../models/memeModels'
 
 //* Test petición GET*\\
 describe('CRUD memes', () => {
@@ -55,4 +56,29 @@ describe('CRUD create meme (POST)', () => {
             'El nombre es obligatorio'
         )
     })
+})
+
+describe('CRUD delete meme (DELETE)', () => {
+    test('Check that the meme is deleted', async () => {
+        // Crear un meme primero
+        const newMeme = await memeModel.create({
+            name: 'Test Meme to Delete',
+            image: 'https://example.com/test-meme.jpg',
+        })
+
+        // Realizar la petición DELETE con el ID del meme creado
+        await request(app)
+            .delete(`/api/v1/memes/${newMeme.id}`) // Usamos el id del meme que acabamos de crear
+            .expect('Content-Type', /json/)
+            .expect(200) // Esperamos un código 200
+            .expect((res) => {
+                // Comprobamos que el mensaje de éxito sea el esperado
+                expect(res.body.ok).toBe(true)
+                expect(res.body.message).toBe('Meme deleted successfully')
+            })
+
+        // Verificamos que el meme ya no existe en la base de datos
+        const deletedMeme = await memeModel.findByPk(newMeme.id)
+        expect(deletedMeme).toBeNull() // El meme debería haber sido eliminado
+    }, 10000) // Incrementamos el timeout a 10 segundos
 })
