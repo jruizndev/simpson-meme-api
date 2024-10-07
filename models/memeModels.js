@@ -1,4 +1,4 @@
-import connection_db from "../database/connectionDb.js";
+import {connection_db} from "../database/connectionDb.js";
 import { DataTypes } from "sequelize";
 
 const memeModel = connection_db.define(
@@ -13,7 +13,7 @@ const memeModel = connection_db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    urlImage: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },

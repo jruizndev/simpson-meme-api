@@ -53,7 +53,7 @@ export const createMeme = async (req, res) => {
   const memeData = req.body;
 
   // Validación de datos
-  if (!memeData.name || !memeData.urlImage) {
+  if (!memeData.name || !memeData.image) {
     return res.status(400).json({
       ok: false,
       status: 400,
@@ -64,7 +64,7 @@ export const createMeme = async (req, res) => {
   try {
     const createMeme = await memeModel.create({
       name: memeData.name,
-      urlImage: memeData.urlImage,
+      image: memeData.image,
     });
 
     res.status(201).json({
@@ -90,7 +90,7 @@ export const updateMeme = async (req, res) => {
   const memeData = req.body;
 
   // Validación de datos
-  if (!memeData.name || !memeData.urlImage) {
+  if (!memeData.name || !memeData.image) {
     return res.status(400).json({
       ok: false,
       status: 400,
@@ -102,7 +102,7 @@ export const updateMeme = async (req, res) => {
     const updateMeme = await memeModel.update(
       {
         name: memeData.name,
-        urlImage: memeData.urlImage,
+        image: memeData.image,
       },
       {
         where: {
