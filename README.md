@@ -1,6 +1,6 @@
 # API del Museo de Memes de Los Simpsons
 
-Esta API REST permite gestionar los memes del Museo de Memes de Los Simpsons, integrándose con una base de datos relacional. Proporciona endpoints para la creación, lectura, actualización y eliminación de memes. Cada meme incluye el nombre de un personaje de Los Simpsons y un enlace a la imagen del meme.
+Esta API REST permite gestionar los memes del Museo de Memes de Los Simpsons, integrándose con una base de datos relacional. Proporciona endpoints para la creación, lectura, actualización y eliminación de memes. Cada meme incluye el nombre de un personaje de Los Simpsons y un enlace a la imagen del meme,
 
 ## Tecnologías Utilizadas
 
