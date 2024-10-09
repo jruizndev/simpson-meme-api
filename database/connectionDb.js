@@ -1,27 +1,27 @@
-import { Sequelize } from 'sequelize'
-import dotenv from 'dotenv'
+import { Sequelize } from "sequelize";
+import config from "../config.js";
 
-dotenv.config()
+// Extrae las variables de configuración del archivo config.js
+const {node_env, dev_db_name, test_db_name, user, password, host, dialect } = config.db;
 
-const connection_db = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        host: process.env.DB_HOST,
-        dialect: 'mysql',
-        define: { timestamps: false },
-    }
-)
+const db_name = node_env === "test" ? test_db_name : dev_db_name;
+
+console.log(node_env)
+
+
+export const connection_db = new Sequelize(db_name, user, password, {
+  host: host,
+  dialect: dialect,
+  define: { timestamps: false }, // Evita los timestamps automáticos
+});
 
 export const initializeDatabase = async () => {
-    try {
-        await connection_db.authenticate()
-        console.log('Conexión a la base de datos establecida correctamente.')
-    } catch (error) {
-        console.error('No se pudo conectar a la base de datos:', error)
-        throw error
-    }
-}
-
-export default connection_db
+  try {
+    await connection_db.authenticate();
+    
+    console.log("Conexión a la base de datos establecida correctamente.");
+  } catch (error) {
+    console.error("No se pudo conectar a la base de datos:", error);
+    throw error;
+  }
+};

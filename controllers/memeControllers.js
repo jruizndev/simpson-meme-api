@@ -52,20 +52,20 @@ export const getMemeById = async (req, res) => {
 export const createMeme = async (req, res) => {
     const memeData = req.body
 
-    // Validación de datos
-    if (!memeData.name || !memeData.image) {
-        return res.status(400).json({
-            ok: false,
-            status: 400,
-            message: 'Name and URL image are required.',
-        })
-    }
+  // Validación de datos
+  if (!memeData.name || !memeData.image) {
+    return res.status(400).json({
+      ok: false,
+      status: 400,
+      message: "Name and URL image are required.",
+    });
+  }
 
-    try {
-        const createMeme = await memeModel.create({
-            name: memeData.name,
-            image: memeData.image,
-        })
+  try {
+    const createMeme = await memeModel.create({
+      name: memeData.name,
+      image: memeData.image,
+    });
 
         res.status(201).json({
             ok: true,
@@ -89,27 +89,27 @@ export const updateMeme = async (req, res) => {
     const id = req.params.id
     const memeData = req.body
 
-    // Validación de datos
-    if (!memeData.name || !memeData.image) {
-        return res.status(400).json({
-            ok: false,
-            status: 400,
-            message: 'Name and URL image are required.',
-        })
-    }
+  // Validación de datos
+  if (!memeData.name || !memeData.image) {
+    return res.status(400).json({
+      ok: false,
+      status: 400,
+      message: "Name and URL image are required.",
+    });
+  }
 
-    try {
-        const updateMeme = await memeModel.update(
-            {
-                name: memeData.name,
-                image: memeData.image,
-            },
-            {
-                where: {
-                    id,
-                },
-            }
-        )
+  try {
+    const updateMeme = await memeModel.update(
+      {
+        name: memeData.name,
+        image: memeData.image,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
 
         if (updateMeme[0] === 0) {
             return res.status(404).json({
