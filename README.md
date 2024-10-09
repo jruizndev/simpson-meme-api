@@ -37,14 +37,12 @@ Las tablas principales incluyen:
     DB_USER=usuario
     DB_PASSWORD=contraseña
     DB_NAME=nombre_bd
-
     ```
 
 3. Inicia el servidor:
 
     ```bash
     npm start
-
     ```
 
 4. Para ejecutar las pruebas:
@@ -64,28 +62,26 @@ La API está documentada en Postman. Puedes importar la colección desde este en
 #### 1. Obtener todos los memes
 
 -   **Method**: GET
--   **URL**: `/api/v1/memes`
+-   **URL**: `http://localhost:3001/api/v1/memes`
 
 **Respuesta:**
 
-````json
+```json
 {
     "ok": true,
-    "status": 200,
-    "body": [
-        {
-            "meme_id": 1,
-            "name": "Homer Simpson",
-            "urlImage": "enlace_imagen"
-        },
-        ...
-    ]
+    "status": 0,
+    "body": {
+        "meme_id": 0,
+        "name": "",
+        "urlImage": ""
+    }
 }
+```
 
 #### 2. Obtener un meme por ID
 
-- **Method**: GET
-- **URL**: `/api/v1/memes/:id`
+-   **Method**: GET
+-   **URL**: `http://localhost:3001/api/v1/memes/:id`
 
 **Respuesta:**
 
@@ -96,50 +92,54 @@ La API está documentada en Postman. Puedes importar la colección desde este en
     "body": {
         "meme_id": 1,
         "name": "Homer Simpson",
-        "urlImage": "enlace_imagen"
+        "urlImage": "Enlace de la imagen"
     }
 }
+```
 
 #### 3. Crear un nuevo meme
 
-- **Method**: POST
-- **URL**: `/api/v1/memes`
-- **Body**:
+-   **Method**: POST
+-   **URL**: `http://localhost:3001/api/v1/memes`
+-   **Body**:
 
 ```json
 {
-  "name": "Bart Simpson",
-  "urlImage": "Enlace de la imagen"
+    "name": "Bart Simpson",
+    "urlImage": "Enlace de la imagen"
 }
+```
 
+**Respuesta:**
 Tras un posteo exitoso, la respuesta tendrá un código de estado de 201 y un cuerpo JSON con la siguiente estructura:
 
+```json
 {
     "ok": true,
-    "status": 200,
-    "message": "Meme updated successfully",
+    "status": 201,
+    "message": "Meme Created",
     "body": {
         "meme_id": 5,
-        "name": "Lisa Simpson",
-        "urlImage": "Nuevo enlace de la imagen"
+        "name": "Bart Simpson",
+        "urlImage": "Enlace de la imagen"
     }
 }
-````
+```
 
 #### 4. Actualizar un meme
 
 -   **Method**: PUT
--   **URL**: `/api/v1/memes/:id`
+-   **URL**: `http://localhost:3001/api/v1/memes/:id`
 -   **Body**:
 
-````json
+```json
 {
-  "name": "Lisa Simpson",
-  "urlImage": "Nuevo enlace de la imagen"
+    "name": "Lisa Simpson",
+    "urlImage": "Nuevo enlace de la imagen"
 }
+```
 
 **Respuesta:**
-
 Tras una actualización exitosa, la respuesta tendrá un código de estado de 200 y un cuerpo JSON con la siguiente estructura:
 
 ```json
@@ -153,11 +153,12 @@ Tras una actualización exitosa, la respuesta tendrá un código de estado de 20
         "urlImage": "Nuevo enlace de la imagen"
     }
 }
+```
 
 #### 5. Eliminar un meme
 
-- **Method**: DELETE
-- **URL**: `/api/v1/memes/:id`
+-   **Method**: DELETE
+-   **URL**: `http://localhost:3001/api/v1/memes/:id`
 
 **Respuesta:**
 
@@ -172,4 +173,4 @@ Tras una actualización exitosa, la respuesta tendrá un código de estado de 20
         "urlImage": "Enlace de la imagen"
     }
 }
-````
+```
