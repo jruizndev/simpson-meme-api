@@ -110,6 +110,8 @@ La API está documentada en Postman. Puedes importar la colección desde este en
 {
   "name": "Bart Simpson",
   "urlImage": "Enlace de la imagen"
+  "name": "Bart Simpson",
+  "urlImage": "Enlace de la imagen"
 }
 
 Tras un posteo exitoso, la respuesta tendrá un código de estado de 201 y un cuerpo JSON con la siguiente estructura:
@@ -143,8 +145,15 @@ Tras un posteo exitoso, la respuesta tendrá un código de estado de 201 y un cu
 Tras una actualización exitosa, la respuesta tendrá un código de estado de 200 y un cuerpo JSON con la siguiente estructura:
 
 ```json
+```json
 {
     "ok": true,
+    "status": 200,
+    "message": "Meme updated successfully",
+    "body": {
+        "meme_id": 5,
+        "name": "Lisa Simpson",
+        "urlImage": "Nuevo enlace de la imagen"
     "status": 200,
     "message": "Meme updated successfully",
     "body": {
@@ -168,6 +177,8 @@ Tras una actualización exitosa, la respuesta tendrá un código de estado de 20
     "message": "Meme deleted successfully",
     "deletedMeme": {
         "meme_id": 4,
+        "name": "Bart Simpson",
+        "urlImage": "Enlace de la imagen"
         "name": "Bart Simpson",
         "urlImage": "Enlace de la imagen"
     }
