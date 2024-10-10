@@ -6,8 +6,7 @@ Esta API REST permite gestionar los memes del Museo de Memes de Los Simpsons, in
 
 -   **Node.js**: Plataforma utilizada para construir la API.
 -   **Express**: Framework para gestionar rutas y middleware.
--   **Sequelize**: ORM utilizado para interactuar con la base de datos.
--   **MySQL**: Base de datos relacional.
+-   **MongoDB**: Base de datos relacional.
 -   **Express Validator**: Para la validación de datos.
 -   **Jest** y **Supertest**: Herramientas empleadas para realizar pruebas automatizadas.
 
@@ -24,28 +23,47 @@ Las tablas principales incluyen:
 
 ## Instrucciones para Ejecutar el Proyecto
 
-1. Clona el repositorio:
+1.  Clona el repositorio:
 
     ```bash
     git clone https://github.com/usuario/museo-memes-simpsons-api.git
     ```
 
-2. Configura las variables de entorno en un archivo `.env` con los siguientes valores:
+2.  Configura las variables de entorno en un archivo `.env` con los siguientes valores:
 
-    ```bash
+        ```bash
+
+    DEV_DB_NAME=meme_app
+    TEST_DB_NAME=meme_app_test
+    DB_USER=root
+    DB_PASSWORD=1234
     DB_HOST=localhost
-    DB_USER=usuario
-    DB_PASSWORD=contraseña
-    DB_NAME=nombre_bd
+
     ```
 
-3. Inicia el servidor:
-
-    ```bash
-    npm start
     ```
 
-4. Para ejecutar las pruebas:
+3.  Ejecutar MongoDB:
+
+        ```bash
+
+    mongod
+
+    ```
+
+    ```
+
+4.  Inicia el servidor:
+
+        ```bash
+
+    npm run dev
+
+    ```
+
+    ```
+
+5.  Para ejecutar las pruebas:
 
     ```bash
     npm test
@@ -69,11 +87,14 @@ La API está documentada en Postman. Puedes importar la colección desde este en
 ```json
 {
     "ok": true,
-    "status": 0,
+    "status": 200,
     "body": {
-        "meme_id": 0,
+        "_id": "",
         "name": "",
-        "urlImage": ""
+        "image": "",
+        "createdAt": "",
+        "updatedAt": "",
+        "__v": 0
     }
 }
 ```
@@ -90,9 +111,12 @@ La API está documentada en Postman. Puedes importar la colección desde este en
     "ok": true,
     "status": 200,
     "body": {
-        "meme_id": 1,
-        "name": "Homer Simpson",
-        "urlImage": "Enlace de la imagen"
+        "_id": "670797dd10b0a23c46e3242a",
+        "name": "Typescript Any",
+        "image": "https://res.cloudinary.com/dhbzr2e4h/image/upload/v1726683579/qrtjvyfivpsojfsi50ts.png",
+        "createdAt": "2024-10-10T09:01:17.898Z",
+        "updatedAt": "2024-10-10T09:01:17.898Z",
+        "__v": 0
     }
 }
 ```
@@ -106,7 +130,7 @@ La API está documentada en Postman. Puedes importar la colección desde este en
 ```json
 {
     "name": "Bart Simpson",
-    "urlImage": "Enlace de la imagen"
+    "image": "Enlace de la imagen"
 }
 ```
 
@@ -135,7 +159,7 @@ Tras un posteo exitoso, la respuesta tendrá un código de estado de 201 y un cu
 ```json
 {
     "name": "Lisa Simpson",
-    "urlImage": "Nuevo enlace de la imagen"
+    "image": "Nuevo enlace de la imagen"
 }
 ```
 
@@ -168,9 +192,9 @@ Tras una actualización exitosa, la respuesta tendrá un código de estado de 20
     "status": 200,
     "message": "Meme deleted successfully",
     "deletedMeme": {
-        "meme_id": 4,
+        "_id": 4,
         "name": "Bart Simpson",
-        "urlImage": "Enlace de la imagen"
+        "image": "Enlace de la imagen"
     }
 }
 ```
