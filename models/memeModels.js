@@ -1,27 +1,26 @@
-import {connection_db} from "../database/connectionDb.js";
-import { DataTypes } from "sequelize";
+// Paso 1: Importación de módulos
+import { connection_db } from "../database/connectionDb.js";
+import mongoose from "mongoose";
 
-const memeModel = connection_db.define(
-  "Characters",
+// Paso 2: Definición del esquema
+const memeSchema = new mongoose.Schema(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true,
     },
     image: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true,
     },
   },
+  {
+    timestamps: true,
+  }
+);
 
-    {
-        timestamps: false,
-    }
-)
+// Paso 3: Creación del modelo
+const memeModel = mongoose.model("meme", memeSchema);
 
-export default memeModel
+// Paso 4: Exportación del modelo
+export default memeModel;

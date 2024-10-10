@@ -17,7 +17,6 @@ export let server;
 export const startServer = async () => {
   try {
     await initializeDatabase();
-    await memeModel.sync();
     server = app.listen(port, () => {
       console.log(`Servidor corriendo en el puerto ${port} 🚀`);
     });
