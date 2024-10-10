@@ -14,8 +14,7 @@ Esta API REST permite gestionar los memes del Museo de Memes de Los Simpsons, in
 
 La estructura de la base de datos fue diseñada conforme a los requisitos de la aplicación frontend en React. Es una base de datos NoSQL gestionada mediante MongoDB.
 
-![Esquema de la Base de Datos](./assets//dbdiagram.png)  
-_Esquema gráfico de la base de datos generado con dbdiagram o drawsql._
+![Esquema de la Base de Datos](./assets//dbdiagram.png)
 
 Las tablas principales incluyen:
 
