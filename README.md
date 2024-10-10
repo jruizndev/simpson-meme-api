@@ -1,18 +1,19 @@
+
 # API del Museo de Memes de Los Simpsons
 
-Esta API REST permite gestionar los memes del Museo de Memes de Los Simpsons, integrándose con una base de datos relacional. Proporciona endpoints para la creación, lectura, actualización y eliminación de memes. Cada meme incluye el nombre de un personaje de Los Simpsons y un enlace a la imagen del meme.
+Esta API REST permite gestionar los memes del Museo de Memes de Los Simpsons, integrándose con una base de datos NoSQL. Proporciona endpoints para la creación, lectura, actualización y eliminación de memes. Cada meme incluye el nombre de un personaje de Los Simpsons y un enlace a la imagen del meme.
 
 ## Tecnologías Utilizadas
 
 -   **Node.js**: Plataforma utilizada para construir la API.
 -   **Express**: Framework para gestionar rutas y middleware.
--   **MongoDB**: Base de datos relacional.
+-   **MongoDB**: Base de datos NoSQL.
 -   **Express Validator**: Para la validación de datos.
 -   **Jest** y **Supertest**: Herramientas empleadas para realizar pruebas automatizadas.
 
 ## Base de Datos
 
-La estructura de la base de datos fue diseñada conforme a los requisitos de la aplicación frontend en React. Es una base de datos relacional gestionada mediante Sequelize.
+La estructura de la base de datos fue diseñada conforme a los requisitos de la aplicación frontend en React. Es una base de datos NoSQL gestionada mediante MongoDB.
 
 ![Esquema de la Base de Datos](./db-diagram.png)  
 _Esquema gráfico de la base de datos generado con dbdiagram o drawsql._
@@ -31,36 +32,24 @@ Las tablas principales incluyen:
 
 2.  Configura las variables de entorno en un archivo `.env` con los siguientes valores:
 
-        ```bash
-
+    ```bash
     DEV_DB_NAME=meme_app
     TEST_DB_NAME=meme_app_test
     DB_USER=root
     DB_PASSWORD=1234
     DB_HOST=localhost
-
-    ```
-
     ```
 
 3.  Ejecutar MongoDB:
 
-        ```bash
-
+    ```bash
     mongod
-
-    ```
-
     ```
 
 4.  Inicia el servidor:
 
-        ```bash
-
+    ```bash
     npm run dev
-
-    ```
-
     ```
 
 5.  Para ejecutar las pruebas:
@@ -145,7 +134,7 @@ Tras un posteo exitoso, la respuesta tendrá un código de estado de 201 y un cu
     "body": {
         "meme_id": 5,
         "name": "Bart Simpson",
-        "urlImage": "Enlace de la imagen"
+        "image": "Enlace de la imagen"
     }
 }
 ```
@@ -174,7 +163,7 @@ Tras una actualización exitosa, la respuesta tendrá un código de estado de 20
     "body": {
         "meme_id": 5,
         "name": "Lisa Simpson",
-        "urlImage": "Nuevo enlace de la imagen"
+        "image": "Nuevo enlace de la imagen"
     }
 }
 ```
