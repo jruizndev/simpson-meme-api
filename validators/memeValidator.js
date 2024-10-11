@@ -21,7 +21,7 @@ export const validateMemeUpdate = [
       return simpsonsNamesLowerCase.includes(value.toLowerCase());
     })
     .withMessage("El nombre debe ser de un personaje de Los Simpson"),
-  check("urlImage", "La URL debe ser válida").isURL({
+  check("image", "La URL debe ser válida").isURL({
     protocols: ["http", "https"],
     require_protocol: true,
     require_valid_protocol: true,
